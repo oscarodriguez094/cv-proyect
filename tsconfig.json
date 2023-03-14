@@ -15,7 +15,11 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@models/*": ["./src/Back/models/*"],
+      "@services/*": ["./src/Back/services/*"],
+      "@dao/*": ["./src/Back/dao/*"],
+      "@database/*": ["./src/Back/databse/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
