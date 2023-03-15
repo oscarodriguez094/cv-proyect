@@ -1,8 +1,6 @@
 import db from '../../database';
-import { Job, IJob } from '../../models';
-import { Developer, IDeveloper } from '@/Back/models';
-import { updateDeveloperArrayDao } from '../Developer';
-import { getConnection } from '@/Back/database/db';
+
+import { Developer, IDeveloper, Job, IJob } from '@/Back/models';
 import mongoose from 'mongoose';
 
 export type JobDaoResponse = {
