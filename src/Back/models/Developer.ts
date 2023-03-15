@@ -23,14 +23,14 @@ const developerSchema = new Schema({
 		type: [{ type: String, index: { unique: true } }],
 		enum: {
 			values: ['js', 'php', 'python', 'dart', 'html', 'css', 'typeScript'],
-			message: '{VALUE} no es un estado permitido'
+			message: '{VALUE} no es un estado aaa permitido'
 		}
 	},
 	language: {
 		type: [{ type: String, index: { unique: true } }],
 		enum: {
 			values: ['es', 'en', 'de', 'it'],
-			message: '{VALUE} no es un estado permitido'
+			message: '{VALUE} no es un estado aaaa permitido'
 		}
 	},
 	jobs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Job' }]

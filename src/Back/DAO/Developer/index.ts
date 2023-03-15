@@ -89,7 +89,6 @@ export const updateDeveloperArrayDao = async (id: string, item: ArrayTypes): Pro
 			};
 		return { result: true, developer };
 	} catch (e) {
-		console.log(e);
 		db.disconnect();
 		return { result: false, error: 'No se ha podidod insertar el valor' };
 	}

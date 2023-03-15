@@ -2,17 +2,17 @@ import mongoose, { Model, Schema, Types } from 'mongoose';
 import { ISkill } from './Skill';
 
 export interface ISkillDescription {
-	_id: Types.ObjectId;
+	_id?: Types.ObjectId;
 	title: string;
 	description: string;
-	developerId: string;
+	languageType: string;
 	skills?: ISkill[];
 }
 
 const skillDescriptionSchema = new Schema({
 	title: { type: String, required: true },
 	description: { type: String, required: true },
-	developerId: { type: String, required: true },
+	languageType: { type: String, required: true, unique: true },
 	skills: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Skill' }]
 });
 

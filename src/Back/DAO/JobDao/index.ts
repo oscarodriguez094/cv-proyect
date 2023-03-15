@@ -42,7 +42,6 @@ export const createJob = async (job: IJob): Promise<JobDaoResponse> => {
 		if (jobDao) return { result: true, job: jobDao };
 		return { result: false, error: 'No se ha podido actualizar' };
 	} catch (e) {
-		console.log(e);
 		db.disconnect();
 		return { result: false, error: e };
 	}
@@ -56,7 +55,6 @@ export const findJobById = async (id: string): Promise<JobDaoResponse> => {
 		if (jobDao) return { result: true, job: jobDao };
 		return { result: false, error: 'El trabajo que buscas no existe' };
 	} catch (e) {
-		console.log(e);
 		db.disconnect();
 		return { result: false, error: e };
 	}
@@ -64,7 +62,6 @@ export const findJobById = async (id: string): Promise<JobDaoResponse> => {
 
 export const updateJob = async (id: string, jobRequest: IJob): Promise<JobDaoResponse> => {
 	try {
-		console.log(id);
 		db.connect();
 		const jobUpdated: IJob | null = await Job.findByIdAndUpdate(id, jobRequest, { runValidators: true, upsert: true });
 		db.disconnect();
@@ -72,7 +69,6 @@ export const updateJob = async (id: string, jobRequest: IJob): Promise<JobDaoRes
 
 		return { result: false, error: 'El trabajo que buscas no existe' };
 	} catch (e) {
-		console.log(e);
 		db.disconnect();
 		return { result: false, error: e };
 	}
@@ -85,7 +81,6 @@ export const deleteJobById = async (id: string): Promise<JobDaoResponse> => {
 			try {
 				const job: IJob | null = await Job.findByIdAndDelete(id).session(session);
 				if (job) {
-					console.log(job._id);
 					const developer: IDeveloper | null = await Developer.findByIdAndUpdate(
 						job.developerId,
 						{
@@ -95,7 +90,6 @@ export const deleteJobById = async (id: string): Promise<JobDaoResponse> => {
 						},
 						{ new: true }
 					).session(session);
-					console.log(developer);
 					if (developer && developer.jobs && !developer?.jobs.filter((item) => item._id.toString() === job._id.toString()).length) {
 						await session.commitTransaction();
 						return job;

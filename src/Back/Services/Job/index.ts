@@ -26,7 +26,7 @@ export const createJobService = async (res: NextApiResponse<DataJob>, jobRequest
 	return res.status(job.result ? 200 : 400).json(job);
 };
 
-export const updateJobService = async (res: NextApiResponse<DataJob>, jobRequest: IJob, id: string) => {
-	const job: JobDaoResponse = await updateJob(id, jobRequest);
+export const updateJobService = async (res: NextApiResponse<DataJob>, jobRequest: IJob, name: string) => {
+	const job: JobDaoResponse = await updateJob(name, jobRequest);
 	return res.status(job.result ? 200 : 400).json(job);
 };
