@@ -6,6 +6,9 @@ export interface IDeveloper {
 	name: string;
 	surname: string;
 	photo?: string;
+	email: string;
+	password?: string;
+	role?: UserRole;
 	skills?: SkillType[];
 	language?: LanguageType[];
 	jobs?: IJob[];
@@ -15,10 +18,22 @@ export type SkillType = 'js' | 'php' | 'java' | 'python' | 'dart' | 'html' | 'cs
 
 export type LanguageType = 'es' | 'en' | 'de' | 'it';
 
+export type UserRole = 'admin' | 'normal';
+
 const developerSchema = new Schema({
 	name: { type: String, required: true },
 	surname: { type: String, required: true },
 	photo: { type: String },
+	email: { type: String, required: true },
+	password: { type: String },
+	role: {
+		type: String,
+		enum: {
+			values: ['admin', 'normal'],
+			message: ' no es un estado permitido',
+			default: 'normal'
+		}
+	},
 	skills: {
 		type: [{ type: String, index: { unique: true } }],
 		enum: {

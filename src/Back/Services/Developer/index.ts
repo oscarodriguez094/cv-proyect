@@ -9,6 +9,7 @@ import {
 	createDeveloper
 } from '@/Back/DAO';
 import { IDeveloper, IJob, LanguageType, SkillType } from '@/Back/models';
+import { crypto } from '@/Back/Utils';
 
 export type DataDeveloper =
 	| {
@@ -34,6 +35,7 @@ export const findDeveloperService = async (res: NextApiResponse<DataDeveloper>, 
 export const createDeveloperService = async (res: NextApiResponse<DataDeveloper>, developer: IDeveloper) => {
 	const developerDao: DeveloperDaoResponse = await findDeveloperByName(developer.name);
 	if (!developerDao.result) {
+		developer.password = await crypto.cryptPassword(developer.password!);
 		await createDeveloper(developer);
 		return res.status(201).json({ message: 'se ha creado el desarrollador' });
 	}
