@@ -1,5 +1,4 @@
 import mongoose, { Model, Schema, Types } from 'mongoose';
-import { SkillDescription } from '@/Back/models';
 
 export interface ISkill {
 	_id?: Types.ObjectId;

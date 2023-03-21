@@ -13,7 +13,6 @@ export const createSkill = async (skill: ISkill): Promise<SkillDaoResponse> => {
 		const transaction = async (): Promise<ISkill | null> => {
 			try {
 				const skillDao: ISkill = await new Skill(skill).save({ session });
-				console.log(skillDao);
 				const skillDescription: ISkillDescription | null = await SkillDescription.findByIdAndUpdate(
 					skillDao.skillDescriptionId,
 					{
