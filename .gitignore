@@ -2,6 +2,7 @@
 /mongo
 /data
 mongodb-osx-ssl-x86_64-4.0.12.tgz
+.env.development
 # dependencies
 /node_modules
 /.pnp
