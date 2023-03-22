@@ -5,13 +5,16 @@ export interface IDeveloper {
 	_id?: Types.ObjectId;
 	name: string;
 	surname: string;
+	description: string;
 	photo?: string;
 	email: string;
 	password?: string;
+	phone?: number;
+	address?: string;
 	role?: UserRole;
 	skills?: SkillType[];
 	language?: LanguageType[];
-	jobs?: IJob[];
+	jobs: IJob[];
 }
 
 export type SkillType = 'js' | 'php' | 'java' | 'python' | 'dart' | 'html' | 'css' | 'typeScript';
@@ -23,9 +26,12 @@ export type UserRole = 'admin' | 'normal';
 const developerSchema = new Schema({
 	name: { type: String, required: true },
 	surname: { type: String, required: true },
+	description: { type: String },
 	photo: { type: String },
 	email: { type: String, required: true },
 	password: { type: String },
+	phone: { type: Number, min: [9, 'Add phone cannot less than 9'] },
+	address: { type: String },
 	role: {
 		type: String,
 		enum: {

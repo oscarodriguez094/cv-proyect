@@ -36,8 +36,11 @@ export const createDeveloperService = async (res: NextApiResponse<DataDeveloper>
 	const developerDao: DeveloperDaoResponse = await findDeveloperByName(developer.name);
 	if (!developerDao.result) {
 		developer.password = await crypto.cryptPassword(developer.password!);
-		await createDeveloper(developer);
-		return res.status(201).json({ message: 'se ha creado el desarrollador' });
+		const developerCreated = await createDeveloper(developer);
+
+		return res
+			.status(developerCreated.result ? 201 : 400)
+			.json(developerCreated.result ? { message: 'se ha creado el desarrollador' } : { message: 'No se ha creado el desarrollador' });
 	}
 	return res.status(400).json({ message: developerDao.error });
 };

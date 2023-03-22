@@ -22,6 +22,7 @@ export const deleteJobByIdService = async (res: NextApiResponse<DataJob>, id: st
 };
 
 export const createJobService = async (res: NextApiResponse<DataJob>, jobRequest: IJob) => {
+	console.log(jobRequest);
 	const job: JobDaoResponse = await createJob(jobRequest);
 	return res.status(job.result ? 200 : 400).json(job);
 };
