@@ -7,6 +7,9 @@ export interface Developer {
 	photo?: string;
 	email: string;
 	password?: string;
+	phone?: number;
+	address: string;
+	description: string;
 	role?: UserRole;
 	skills?: SkillType[];
 	language?: LanguageType[];

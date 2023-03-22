@@ -5,29 +5,33 @@ import { FC } from 'react';
 
 import { DeveloperResponse, Developer } from '../Front/Interfaces/Developer';
 import { getDeveloper } from '../Front/Services/Developer/index';
+import { Description } from '@/Front/Components';
+import { Job } from '@/Front/Interfaces';
+import { JobList } from '../Front/Components/JobList/index';
 
 const inter = Inter({ subsets: ['latin'] });
 
 interface Props {
 	developer: Developer;
+	jobs: Job[];
 }
 
-const HomePage: FC<Props> = ({ developer }) => {
+const HomePage: FC<Props> = ({ developer, jobs }) => {
+	const { description } = developer;
 	return (
 		<Layout developer={developer}>
-			<Typography variant="h1" color="primary">
-				Hola Mundo
-			</Typography>
+			<Description description={description} />
+			<JobList jobs={jobs} />
 		</Layout>
 	);
 };
 
 export async function getStaticProps() {
 	const { data }: { data: DeveloperResponse } = await getDeveloper();
-	console.log(data);
 	return {
 		props: {
-			developer: data.developer
+			developer: data.developer,
+			jobs: data.developer?.jobs || []
 		}
 	};
 }

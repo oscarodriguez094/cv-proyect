@@ -3,14 +3,17 @@ import type { AppProps } from 'next/app';
 import { SessionProvider } from 'next-auth/react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { darkTheme, lightTheme } from '@/Front/Themes';
+import { UIProvider } from '@/Front/Contexts';
 
 export default function App({ Component, pageProps }: AppProps) {
 	return (
 		<ThemeProvider theme={lightTheme}>
-			<SessionProvider>
-				<CssBaseline />
-				<Component {...pageProps} />
-			</SessionProvider>
+			<UIProvider>
+				<SessionProvider>
+					<CssBaseline />
+					<Component {...pageProps} />
+				</SessionProvider>
+			</UIProvider>
 		</ThemeProvider>
 	);
 }

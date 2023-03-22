@@ -4,7 +4,7 @@ export interface Job {
 	_id: string;
 	descriptionTitle: string;
 	description: string;
-	startDate?: string;
-	endDate?: string;
+	startDate?: number;
+	endDate?: number;
 	developerId: string;
 }
